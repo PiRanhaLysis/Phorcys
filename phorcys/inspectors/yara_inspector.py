@@ -6,9 +6,10 @@ from phorcys.decoders.base import Layer
 class YaraInspector:
     def __init__(self, rules: str):
         self.layer = None
-        self.rules = yara.compile(source = rules)
+        self.rules_src = rules
 
     def __call__(self, layer: Layer, *args, **kwargs):
+        self.rules = yara.compile(source = self.rules_src)
         tags = []
         rules = {}
         self.layer = layer
