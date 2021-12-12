@@ -122,6 +122,17 @@ class Layer:
 
         return ret
 
+    def get_encoding_path(self) -> list:
+        to_visit = [self]
+        path = []
+        while len(to_visit) != 0:
+            next = to_visit.pop()
+            path.append(next.name)
+            if next.parent:
+                to_visit.append(next.parent)
+        path.reverse()
+        return path
+
     @property
     def leaves(self) -> list:
         to_visit = [self]
