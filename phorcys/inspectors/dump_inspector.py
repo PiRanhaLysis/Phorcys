@@ -1,13 +1,12 @@
 import base64
-from functools import partial
-from multiprocessing import Pool, Lock
+from multiprocessing import Pool
 
 from phorcys.decoders.deepdecoder import DeepDecoder
 from phorcys.loaders import DumpLoader
 
 
 class DumpInspector:
-    def __init__(self, dump: DumpLoader, inspectors = []):
+    def __init__(self, dump: DumpLoader, inspectors=[]):
         self.dump = dump
         self.inspectors = inspectors
 
@@ -35,7 +34,7 @@ class DumpInspector:
             count, tags, rules = i(top_layer)
             all_rules.append(rules)
             all_tags.extend(tags)
-        inspection_results['url'] = {'layers': top_layer.dict(recursive = True), 'clues': count}
+        inspection_results['url'] = {'layers': top_layer.dict(recursive=True), 'clues': count}
         total += count
 
         # Inspect Request payload
@@ -47,7 +46,7 @@ class DumpInspector:
                 count, tags, rules = i(top_layer)
                 all_rules.append(rules)
                 all_tags.extend(tags)
-            inspection_results['content'] = {'layers': top_layer.dict(recursive = True), 'clues': count}
+            inspection_results['content'] = {'layers': top_layer.dict(recursive=True), 'clues': count}
             total += count
 
         # Inspect Response payload
@@ -59,7 +58,7 @@ class DumpInspector:
                 count, tags, rules = i(top_layer)
                 all_rules.append(rules)
                 all_tags.extend(tags)
-            inspection_results['response'] = {'layers': top_layer.dict(recursive = True), 'clues': count}
+            inspection_results['response'] = {'layers': top_layer.dict(recursive=True), 'clues': count}
             total += count
 
         aggregated_rules = {}

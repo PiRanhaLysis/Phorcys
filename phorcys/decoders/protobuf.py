@@ -20,11 +20,11 @@ class Protobuf(DecoderPlugin):
         return self.layer
 
     def _decode(self, data, **metadata):
-        with tempfile.NamedTemporaryFile(delete = True) as tf:
+        with tempfile.NamedTemporaryFile(delete=True) as tf:
             tf.write(data)
             tf.seek(0)
-            content = subprocess.check_output("cat %s | protoc --decode_raw" % tf.name, shell = True,
-                                              universal_newlines = True)
+            content = subprocess.check_output("cat %s | protoc --decode_raw" % tf.name, shell=True,
+                                              universal_newlines=True)
             self.layer.raw_data = content
             self.layer.lines = content.splitlines()
             self._decode_data()

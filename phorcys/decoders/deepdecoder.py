@@ -37,7 +37,7 @@ class DeepDecoder:
                         pass
         except KeyError:
             pass
-        self.plugin_manager.setPluginPlaces(directories_list = self.plugin_locations)
+        self.plugin_manager.setPluginPlaces(directories_list=self.plugin_locations)
         self.plugin_manager.setCategoriesFilter(DecoderPlugin.filter())
         self.plugin_manager.collectPlugins()
 
@@ -84,13 +84,13 @@ class DeepDecoder:
             UrlEncoded(),
             Json(),
             Protobuf(),
+            Base64(),
             Lzma(),
             Zlib(),
             Bzip(),
             Gzip(),
             Text(),
             Html(),
-            Base64(),
             Css(),
         ]
 

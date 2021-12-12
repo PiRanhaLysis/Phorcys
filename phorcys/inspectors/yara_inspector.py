@@ -9,7 +9,7 @@ class YaraInspector:
         self.rules_src = rules
 
     def __call__(self, layer: Layer, *args, **kwargs):
-        self.rules = yara.compile(source = self.rules_src)
+        self.rules = yara.compile(source=self.rules_src)
         tags = []
         rules = {}
         self.layer = layer
@@ -19,7 +19,7 @@ class YaraInspector:
             data = l.raw_data
             if type(data) is not str:
                 data = str(data)
-            matches = self.rules.match(data = data)
+            matches = self.rules.match(data=data)
             if len(matches) > 0:
                 count += 1
                 for m in matches:

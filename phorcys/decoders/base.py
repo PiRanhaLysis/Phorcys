@@ -7,7 +7,7 @@ split_string = lambda x, n: [x[i:i + n] for i in range(0, len(x), n)]
 
 
 class Layer:
-    def __init__(self, is_structured = False):
+    def __init__(self, is_structured=False):
         self.id = str(uuid.uuid4())
         self.is_structured = is_structured
         self.human_readable = False
@@ -106,7 +106,7 @@ class Layer:
                 lines.append(l)
         return lines
 
-    def dict(self, recursive = False) -> dict:
+    def dict(self, recursive=False) -> dict:
         ret = {
             'id': self.id,
             'name': self._name,
@@ -136,4 +136,4 @@ class Layer:
         return leaves
 
     def __repr__(self):
-        return json.dumps(self.dict(True), indent = 2, sort_keys = True)
+        return json.dumps(self.dict(True), indent=2, sort_keys=True)

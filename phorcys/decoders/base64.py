@@ -8,7 +8,7 @@ from phorcys.plugins.decoder import DecoderPlugin
 class Base64(DecoderPlugin):
     def __call__(self, parent: Layer, **metadata) -> Optional[Layer]:
         data = parent.raw_data
-        if len(str(data)) < 24:
+        if len(str(data)) < 4:
             raise ValueError("[Phorcys] Failed to parse input. Not BASE64")
 
         self.layer = parent
@@ -18,7 +18,7 @@ class Base64(DecoderPlugin):
 
     def _decode(self, data):
         try:
-            decoded = base64.b64decode(data, validate = True)
+            decoded = base64.b64decode(data, validate=True)
             child = Layer()
             child.raw_data = decoded
             child.parent = self.layer

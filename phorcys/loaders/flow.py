@@ -104,7 +104,7 @@ def convert(flow):
     if flow.request.method in ["POST", "PUT", "PATCH"]:
         params = [
             {"name": a, "value": b}
-            for a, b in flow.request.urlencoded_form.items(multi = True)
+            for a, b in flow.request.urlencoded_form.items(multi=True)
         ]
         entry["request"]["postData"] = {
             "mimeType": flow.request.headers.get("Content-Type", ""),
@@ -179,8 +179,8 @@ class FlowLoader(DumpLoader):
                 except:
                     pass
 
-    def json(self, indent = 0):
-        return json.dumps(self.flows, indent = indent)
+    def json(self, indent=0):
+        return json.dumps(self.flows, indent=indent)
 
     def __iter__(self):
         return iter(self.flows)

@@ -23,7 +23,7 @@ def find_java_ms_timestamps(data):
     return timestamps
 
 
-def find_java_strings(data, length_type = 'short'):
+def find_java_strings(data, length_type='short'):
     cursor = 0
     strings = []
     while cursor < len(data):

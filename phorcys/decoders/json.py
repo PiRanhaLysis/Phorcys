@@ -23,7 +23,7 @@ class Json(DecoderPlugin):
             if not content.strip().startswith('[') and not content.strip().startswith('{'):
                 raise ValueError("[Phorcys] Failed to parse input.")
             obj['data'] = json.loads(content)
-            content = json.dumps(obj, indent = 2)
+            content = json.dumps(obj, indent=2)
             self._decode_data(obj)
             self.layer.lines = content.splitlines()
         except Exception as e:
