@@ -1,4 +1,5 @@
 import os
+import logging
 from os import path
 from os.path import expanduser
 from typing import Optional
@@ -12,6 +13,7 @@ from phorcys.decoders.bzip import Bzip
 from phorcys.decoders.css import Css
 from phorcys.decoders.gzip import Gzip
 from phorcys.decoders.html import Html
+from phorcys.decoders.http_headers import HttpHeaders
 from phorcys.decoders.json import Json
 from phorcys.decoders.lzma import Lzma
 from phorcys.decoders.protobuf import Protobuf
@@ -19,6 +21,10 @@ from phorcys.decoders.text import Text
 from phorcys.decoders.urlencoded import UrlEncoded
 from phorcys.decoders.zlib import Zlib
 from phorcys.plugins.decoder import DecoderPlugin
+
+
+logging.basicConfig()
+logging.getLogger().setLevel(logging.FATAL)
 
 
 class DeepDecoder:
@@ -81,6 +87,7 @@ class DeepDecoder:
 
     def go_deeper(self, parent, **xargs) -> Optional[Layer]:
         protocols = [
+            HttpHeaders(),
             UrlEncoded(),
             Json(),
             Protobuf(),

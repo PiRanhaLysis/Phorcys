@@ -21,7 +21,7 @@ class Text(DecoderPlugin):
             self.layer.raw_data = content
             self.layer.human_readable = True
             self.layer.name = "text"
-            self.layer.headers = [{'length': len(content)}]
+            self.layer.add_header({'length': len(content)})
             return self.layer
         except:
             raise ValueError("[Phorcys] Failed to parse input. Not text")

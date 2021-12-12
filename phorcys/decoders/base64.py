@@ -18,6 +18,8 @@ class Base64(DecoderPlugin):
 
     def _decode(self, data):
         try:
+            if data[0] == '/':
+                data = data[1:]
             decoded = base64.b64decode(data, validate=True)
             child = Layer()
             child.raw_data = decoded
